@@ -300,3 +300,40 @@ set_option codegen false in
 def fix' (hwf : WellFounded r) (F : ∀ x, (∀ y, r y x → C y) → C x) (x : α) : C x := hwf.fix F x
 
 end WellFounded
+
+section Binary
+
+variable {α : Type u} {β : Type v}
+variable (f : α → α → α)
+variable (inv : α → α)
+variable (one : α)
+local notation a " * " b => f a b
+local notation a "⁻¹" => inv a
+variable (g : α → α → α)
+local notation a " + " b => g a b
+
+def commutative        := ∀ (a b : α), (a * b) = (b * a)
+def associative        := ∀ (a b c : α), ((a * b) * c) = (a * (b * c))
+def left_identity      := ∀ (a : α), (one * a) = a
+def right_identity     := ∀ (a : α), (a * one) = a
+def right_inverse      := ∀ (a : α), (a * (a⁻¹)) = one
+def left_cancelative   := ∀ (a b c : α), ((a * b) = (a * c)) → (b = c)
+def right_cancelative  := ∀ (a b c : α), ((a * b) = (c * b)) → (a = c)
+def left_distributive  := ∀ (a b c : α), (a * (b + c)) = ((a * b) + (a * c))
+def right_distributive := ∀ (a b c : α), ((a + b) * c) = ((a * c) + (b * c))
+def right_commutative (h : β → α → β) := ∀ b a₁ a₂, h (h b a₁) a₂ = h (h b a₂) a₁
+def left_commutative  (h : α → β → β) := ∀ a₁ a₂ b, h a₁ (h a₂ b) = h a₂ (h a₁ b)
+
+lemma left_comm : commutative f → associative f → left_commutative f := sorry
+-- assume hcomm hassoc, assume a b c, calc
+--   a*(b*c) = (a*b)*c  : eq.symm (hassoc a b c)
+--     ...   = (b*a)*c  : hcomm a b ▸ rfl
+--     ...   = b*(a*c)  : hassoc b a c
+
+lemma right_comm : commutative f → associative f → right_commutative f := sorry
+-- assume hcomm hassoc, assume a b c, calc
+--   (a*b)*c = a*(b*c) : hassoc a b c
+--     ...   = a*(c*b) : hcomm b c ▸ rfl
+--     ...   = (a*c)*b : eq.symm (hassoc a c b)
+
+end Binary

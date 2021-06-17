@@ -218,9 +218,9 @@ end Matrix
 
 -- section dot_product
 
--- /-- `dot_product v w` is the sum of the entrywise products `v i * w i` -/
--- def dot_product [has_mul α] [add_comm_monoid α] (v w : m → α) : α :=
--- ∑ i, v i * w i
+/-- `dot_product v w` is the sum of the entrywise products `v i * w i` -/
+def dot_product [Mul α] [AddCommMonoid α] (v w : m → α) : α :=
+sorry
 
 -- theorem dot_product_assoc [semiring α] (u : m → α) (v : m → n → α) (w : n → α) :
 --   dot_product (λ j, dot_product u (λ i, v i j)) w = dot_product u (λ i, dot_product (v i) w) :=

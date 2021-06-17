@@ -1,3 +1,4 @@
+import Mathlib.Logic.Basic
 
 namespace List
 universes uu vv
@@ -39,5 +40,12 @@ theorem perm.eqv (α) : Equivalence (@perm α) := sorry
 
 instance isSetoid (α) : Setoid (List α) :=
 Setoid.mk (@perm α) (perm.eqv α)
+
+--@[congr]
+theorem perm.map (f : α → β) {l₁ l₂ : List α} (p : l₁ ~ l₂) :
+  map f l₁ ~ map f l₂ := sorry
+
+theorem perm.foldr_eq {f : α → β → β} {l₁ l₂ : List α} (lcomm : left_commutative f) (p : l₁ ~ l₂) :
+  ∀ b, foldr f b l₁ = foldr f b l₂ := sorry
 
 end List
