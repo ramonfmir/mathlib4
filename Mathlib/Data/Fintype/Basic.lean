@@ -1,4 +1,4 @@
-import DCP.Mathlib.Data.Finset.Basic
+import Mathlib.Data.Finset.Basic
 
 class Fintype (α : Type u) :=
 (elems : Finset α)

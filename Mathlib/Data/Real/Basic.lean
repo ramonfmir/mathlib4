@@ -1,4 +1,4 @@
-import DCP.Mathlib.Algebra.Order
+import Mathlib.Algebra.Order
 
 def Real : Type := sorry
 
@@ -28,7 +28,7 @@ instance : OfNat Real n := sorry
 
 -- The following lemmas should actually come from type class instances:
 
-theorem mul_le_mul_of_nonneg_left {a b c : ℝ} : 
+theorem mul_le_mul_of_nonneg_left {a b c : ℝ} :
   a ≤ b → 0 ≤ c → c * a ≤ c * b := sorry
 
 theorem add_pos_of_nonneg_of_pos {a b : ℝ} (ha : 0 ≤ a) (hb : 0 < b) :

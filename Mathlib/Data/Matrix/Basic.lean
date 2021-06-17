@@ -4,9 +4,9 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Ellen Arlt, Blair Shi, Sean Leather, Mario Carneiro, Johan Commelin
 -/
 
-import DCP.Mathlib.Data.Fintype.Basic
-import DCP.Mathlib.Algebra.Group.Defs
-import DCP.Mathlib.Data.Pi
+import Mathlib.Data.Fintype.Basic
+import Mathlib.Algebra.Group.Defs
+import Mathlib.Data.Pi
 
 /-!
 # Matrices
@@ -35,7 +35,7 @@ variable {M N : Matrix m n α}
 theorem ext_iff : (∀ i j, M i j = N i j) ↔ M = N :=
 ⟨fun h => funext $ fun i => funext $ h i, fun h => by { intros; simp [h] }⟩
 
--- @[ext] 
+-- @[ext]
 theorem ext : (∀ i j, M i j = N i j) → M = N :=
 ext_iff.mp
 
