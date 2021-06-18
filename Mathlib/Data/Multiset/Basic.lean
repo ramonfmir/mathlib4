@@ -1,6 +1,8 @@
 import Mathlib.Data.Quot
 import Mathlib.Data.List.Basic
 import Mathlib.Data.List.Perm
+import Mathlib.Algebra.Group.Defs
+import Mathlib.Algebra.Group.Basic
 
 def Multiset (α : Type u) : Type u :=
 quotient (List.isSetoid α)
@@ -28,5 +30,10 @@ Quot.liftOn s (fun l => List.foldr f b l) (fun l₁ l₂ p => p.foldr_eq H b)
 def map (f : α → β) (s : Multiset α) : Multiset β :=
 Quot.liftOn s
   (fun l : List α => (l.map f : Multiset β)) (fun l₁ l₂ p => Quot.sound (p.map f))
+
+/-- Sum of a multiset given a commutative monoid structure on `α`.
+  `sum {a, b, c} = a + b + c` -/
+def sum [AddCommMonoid α] : Multiset α → α :=
+foldr Add.add (fun x y z => add_left_comm x y z) 0
 
 end Multiset

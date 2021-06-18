@@ -7,6 +7,7 @@ Authors: Ellen Arlt, Blair Shi, Sean Leather, Mario Carneiro, Johan Commelin
 import Mathlib.Data.Fintype.Basic
 import Mathlib.Algebra.Group.Defs
 import Mathlib.Data.Pi
+import Mathlib.Algebra.BigOperators.Basic
 
 /-!
 # Matrices
@@ -220,7 +221,7 @@ end Matrix
 
 /-- `dot_product v w` is the sum of the entrywise products `v i * w i` -/
 def dot_product [Mul α] [AddCommMonoid α] (v w : m → α) : α :=
-sorry
+Finset.sum Finset.univ (fun i => v i * w i)
 
 -- theorem dot_product_assoc [semiring α] (u : m → α) (v : m → n → α) (w : n → α) :
 --   dot_product (λ j, dot_product u (λ i, v i j)) w = dot_product u (λ i, dot_product (v i) w) :=
