@@ -221,7 +221,7 @@ end Matrix
 
 /-- `dot_product v w` is the sum of the entrywise products `v i * w i` -/
 def dot_product [Mul α] [AddCommMonoid α] (v w : m → α) : α :=
-Finset.sum Finset.univ (fun i => v i * w i)
+∑i (fun i => v i * w i)
 
 -- theorem dot_product_assoc [semiring α] (u : m → α) (v : m → n → α) (w : n → α) :
 --   dot_product (λ j, dot_product u (λ i, v i j)) w = dot_product u (λ i, dot_product (v i) w) :=
@@ -288,13 +288,13 @@ Finset.sum Finset.univ (fun i => v i * w i)
 
 -- end dot_product
 
--- /-- `M ⬝ N` is the usual product of matrices `M` and `N`, i.e. we have that
---     `(M ⬝ N) i k` is the dot product of the `i`-th row of `M` by the `k`-th column of `Ǹ`. -/
--- protected def mul [has_mul α] [add_comm_monoid α] (M : Matrix l m α) (N : Matrix m n α) :
---   Matrix l n α :=
--- λ i k, dot_product (λ j, M i j) (λ j, N j k)
+/-- `M ⬝ N` is the usual product of matrices `M` and `N`, i.e. we have that
+    `(M ⬝ N) i k` is the dot product of the `i`-th row of `M` by the `k`-th column of `Ǹ`. -/
+def mul [Mul α] [AddCommMonoid α] (M : Matrix l m α) (N : Matrix m n α) :
+  Matrix l n α :=
+fun i k => dot_product (fun j => M i j) (fun j => N j k)
 
--- localized "infixl ` ⬝ `:75 := Matrix.mul" in Matrix
+infix " ⬝ " => Matrix.mul
 
 -- theorem mul_apply [has_mul α] [add_comm_monoid α] {M : Matrix l m α} {N : Matrix m n α} {i k} :
 --   (M ⬝ N) i k = ∑ j, M i j * N j k := rfl

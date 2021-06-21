@@ -13,6 +13,7 @@ inductive perm : List α → List α → Prop
 | trans : ∀ {l₁ l₂ l₃ : List α}, perm l₁ l₂ → perm l₂ l₃ → perm l₁ l₃
 
 open perm (swap)
+open Binary
 
 infix "~" => perm
 

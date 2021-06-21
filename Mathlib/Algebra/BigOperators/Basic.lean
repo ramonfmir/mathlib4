@@ -22,4 +22,4 @@ end Finset
 #check @Finset.sum
 #check @Finset.univ
 
-notation "∑" f => Finset.sum Finset.univ f
+notation "∑i " f => Finset.sum Finset.univ f

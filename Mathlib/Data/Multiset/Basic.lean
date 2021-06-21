@@ -9,6 +9,8 @@ quotient (List.isSetoid α)
 
 namespace Multiset
 
+open Binary
+
 instance : Coe (List α) (Multiset α) := ⟨Quot.mk _⟩
 
 /-- `a ∈ s` means that `a` has nonzero multiplicity in `s`. -/
