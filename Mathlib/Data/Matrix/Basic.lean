@@ -74,7 +74,7 @@ def row (v : n → α) : Matrix Unit n α
 -- instance [add_comm_semigroup α] : add_comm_semigroup (Matrix m n α) := pi.add_comm_semigroup
 instance [Zero α] : Zero (Matrix m n α) := Pi.Zero
 -- instance [add_monoid α] : add_monoid (Matrix m n α) := pi.add_monoid
--- instance [add_comm_monoid α] : add_comm_monoid (Matrix m n α) := pi.add_comm_monoid
+instance [AddCommMonoid α] : AddCommMonoid (Matrix m n α) := sorry --pi.add_comm_monoid
 -- instance [has_neg α] : has_neg (Matrix m n α) := pi.has_neg
 -- instance [has_sub α] : has_sub (Matrix m n α) := pi.has_sub
 -- instance [add_group α] : add_group (Matrix m n α) := pi.add_group
@@ -587,11 +587,11 @@ infix " ⬝ " => Matrix.mul
 -- def vec_mul_vec (w : m → α) (v : n → α) : Matrix m n α
 -- | x y := w x * v y
 
--- /-- `mul_vec M v` is the Matrix-vector product of `M` and `v`, where `v` is seen as a column Matrix.
---     Put another way, `mul_vec M v` is the vector whose entries
---     are those of `M ⬝ col v` (see `col_mul_vec`). -/
--- def mul_vec (M : Matrix m n α) (v : n → α) : m → α
--- | i := dot_product (λ j, M i j) v
+/-- `mul_vec M v` is the Matrix-vector product of `M` and `v`, where `v` is seen as a column Matrix.
+    Put another way, `mul_vec M v` is the vector whose entries
+    are those of `M ⬝ col v` (see `col_mul_vec`). -/
+def mul_vec [Mul α] [AddCommMonoid α] (M : Matrix m n α) (v : n → α) : m → α
+| i => dot_product (fun j => M i j) v
 
 -- /-- `vec_mul v M` is the vector-Matrix product of `v` and `M`, where `v` is seen as a row Matrix.
 --     Put another way, `vec_mul v M` is the vector whose entries
