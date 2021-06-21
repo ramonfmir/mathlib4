@@ -301,7 +301,7 @@ def fix' (hwf : WellFounded r) (F : ∀ x, (∀ y, r y x → C y) → C x) (x : 
 
 end WellFounded
 
-section Binary
+namespace Binary
 
 variable {α : Type u} {β : Type v}
 variable (f : α → α → α)

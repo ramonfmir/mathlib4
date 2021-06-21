@@ -9,6 +9,8 @@ variable {α β : Type u}
 
 section Fold
 
+open Binary
+
 -- NOTE: commutative and associative should be instances.
 variable (op : α → α → α) (hc : commutative op) (ha : associative op)
 
