@@ -294,7 +294,7 @@ def mul [Mul α] [AddCommMonoid α] (M : Matrix l m α) (N : Matrix m n α) :
   Matrix l n α :=
 fun i k => dot_product (fun j => M i j) (fun j => N j k)
 
-infix " ⬝ " => Matrix.mul
+infix "⬝" => Matrix.mul
 
 -- theorem mul_apply [has_mul α] [add_comm_monoid α] {M : Matrix l m α} {N : Matrix m n α} {i k} :
 --   (M ⬝ N) i k = ∑ j, M i j * N j k := rfl
