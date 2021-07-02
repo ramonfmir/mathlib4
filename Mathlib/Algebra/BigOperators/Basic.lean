@@ -19,7 +19,9 @@ rfl
 
 end Finset
 
-#check @Finset.sum
-#check @Finset.univ
+syntax  "∑ " ident ", " term : term
+syntax  "∑ " ident ":" term ", " term : term
 
-notation "∑i " f => Finset.sum Finset.univ f
+macro_rules
+  | `(∑ $i:ident, $f:term) => `(Finset.sum Finset.univ (fun $i => $f))
+  | `(∑ $i:ident : $type, $f:term) => `(Finset.sum Finset.univ (fun ($i : $type) => $f))
