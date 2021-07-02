@@ -1,4 +1,3 @@
-import Mathlib.Data.Multiset.Basic
 import Mathlib.Data.Fintype.Basic
 import Mathlib.Data.Finset.Fold
 
@@ -19,9 +18,26 @@ rfl
 
 end Finset
 
+instance {n} : Fintype (Fin n) := sorry
+
 syntax  "∑ " ident ", " term : term
 syntax  "∑ " ident ":" term ", " term : term
 
 macro_rules
   | `(∑ $i:ident, $f:term) => `(Finset.sum Finset.univ (fun $i => $f))
   | `(∑ $i:ident : $type, $f:term) => `(Finset.sum Finset.univ (fun ($i : $type) => $f))
+
+-- TODO: Move.
+
+def Fin.succ {n} (i : Fin n) : Fin (n + 1) := {
+  val := i.val + 1
+  isLt := sorry
+}
+
+theorem Fin.prod_univ_zero [AddCommMonoid β] (f : Fin 0 → β) :
+  (∑ i, f i) = 0 :=
+  sorry
+
+theorem Fin.sum_univ_succ [AddCommMonoid β] {n : ℕ} (f : Fin (n + 1) → β) :
+  (∑ i, f i) = f 0 + (∑ i : Fin n, f i.succ) :=
+  sorry
